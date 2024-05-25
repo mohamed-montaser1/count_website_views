@@ -2,6 +2,9 @@ const app = require("express")();
 const db = require("mongoose");
 const Count = require("./models/count");
 const port = 3001;
+const cors = require("cors");
+
+app.use(cors());
 
 app.get("/count", async function (req, res) {
   const doc = await Count.findOne({ id: "1" });
