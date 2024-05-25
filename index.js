@@ -6,7 +6,9 @@ const port = 3001;
 app.get("/count", async function (req, res) {
   const doc = await Count.findOne({ id: "1" });
   if (!doc) {
-    await Count.create({ id: "1", count: 0 });
+    await Count.create({ id: "1", count: 0 }).then(() =>
+      res.json({ count: 0 })
+    );
   }
   return res.json({ count: doc.count });
 });
